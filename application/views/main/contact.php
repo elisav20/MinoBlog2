@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="md-form mb-0">
-                                <input type="text" id="contact-subject" name="contact-Subject" class="form-control">
+                                <input type="text" id="contact-subject" name="contact-subject" class="form-control">
                                 <label for="contact-Subject" class="">Subject</label>
                             </div>
                         </div>
@@ -53,11 +53,12 @@
                         </div>
                     </div>
 
+                    <div class="text-center mt-4">
+                        <button class="btn btn-default btn-rounded btn-md" type="submit">SEND</button>
+                    </div>
+
                 </form>
 
-                <div class="text-center mt-4">
-                    <button class="btn btn-default btn-rounded btn-md" type="submit">SEND</button>
-                </div>
             </div>
             <!-- /.col-6 -->
 

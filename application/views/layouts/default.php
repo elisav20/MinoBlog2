@@ -69,7 +69,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js">
     </script>
-    <script src="public/scripts/main.min.js"></script>
+    <script src="/public/scripts/main.js"></script>
 </body>
 
 </html>
