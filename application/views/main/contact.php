@@ -16,7 +16,7 @@
                 <p class="contact__text">This contact use Contact Form 7 plugin. When you installed default Contact
                     Form 7 form submission, it will adapted to Mino default CSS styles as you seen in this page.</p>
 
-                <form action="/contact" method="post">
+                <form action="/contact" method="post" class="submitForm">
 
                     <div class="row">
                         <div class="col-md-6">
@@ -53,8 +53,10 @@
                         </div>
                     </div>
 
+                    <div class="statusMsg mb-3"></div>
+
                     <div class="text-center mt-4">
-                        <button class="btn btn-default btn-rounded btn-md" type="submit">SEND</button>
+                        <button class="btn btn-default btn-rounded btn-md submitBtn" type="submit">SEND</button>
                     </div>
 
                 </form>

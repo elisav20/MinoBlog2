@@ -22,8 +22,90 @@
 </head>
 
 <body>
+    <!-- header -->
+    <div class="header">
+        <div class="container">
+            <div class="header__logo">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="/">
+                    <img src="/public/images/header__logo.png" alt="logo">
+                </a>
+            </div>
+        </div>
+        <!-- /.container -->
+
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item <?php if ($title == 'Home') {echo 'active';}?>">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item <?php if ($title == 'Categories') {echo 'active';}?>">
+                            <a class="nav-link" href="/categories">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Store</a>
+                        </li>
+                        <li class="nav-item <?php if ($title == 'Contact') {echo 'active';}?>">
+                            <a class="nav-link" href="/contact">Contacts</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline">
+                        <div class="input-group md-form mt-0 mb-0 form-sm form-2">
+                            <input class="form-control" type="text" name="post_search" id="post_search"
+                                placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <span class="input-group-text rounded-right lighten-3">
+                                    <i class="fas fa-search text-grey" aria-hidden="true" id="search"></i>
+                                    <a href="#" id="close"><i class="fas fa-times"></i></a>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div id="post_show"></div>
+                    </form>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user mr-2"></i>My Profile </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info"
+                        aria-labelledby="navbarDropdownMenuLink-4">
+
+                        <?php if (!isset($_COOKIE['username'])): ?>
+                        <a class="dropdown-item" href="/login">Login</a>
+                        <a class="dropdown-item" href="/register">Register</a>
+                        <?php endif; ?>
+
+                        <?php if (isset($_COOKIE['username'])): ?>
+                        <a class="dropdown-item" href="/add">Add new post</a>
+                        <a class="dropdown-item" href="/profile/<?=$id_user?>">My posts</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="exit_btn" href="/logout">Log out</a>
+                        <?php endif; ?>
+
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+        <!--/.Navbar-->
+
+    </div>
+    <!-- /.header -->
+
     <?php 
-        include_once 'blocks/header.php';
         if ($title == 'Home'):
     ?>
 
@@ -46,21 +128,114 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <?php    
-                    echo $content;
-                    if ($this->route['action'] != 'contact' && 
-                        $this->route['action'] != 'authorization' && 
-                        $this->route['action'] != 'add' &&
-                        $this->route['action'] != 'edit') {
-                        include_once 'blocks/aside.php';
-                    }
+                <?php echo $content; ?>
+
+                <?php
+                    $no_sidebar = ['contact', 'add', 'edit'];
+                    if (!in_array($this->route['action'], $no_sidebar)): 
                 ?>
+                <!-- .sidebar -->
+                <aside class="col-md-3 sidebar mb-5">
+
+                    <!-- .recent__posts -->
+                    <section class="recent__posts">
+
+                        <h4>Recent posts</h4>
+                        <?php foreach ($recentPosts as $val): ?>
+                        <div class="recent__post-info">
+                            <a class="recent__post-title" href="/post/<?=$val['id']?>"><?=$val['title']?></a>
+                            <div class="recent__post-date"><?=date("F j, Y",strtotime($val['date']));?></div>
+                        </div>
+                        <?php endforeach; ?>
+
+                    </section>
+
+                    <!-- .category -->
+                    <section class="category">
+                        <h4>Category</h4>
+                        <?php foreach ($categories as $category): ?>
+                        <div class="category__info">
+                            <a class="category__name" href="/category/<?=$category['id_category']?>">
+                                <?=$category['name']?>
+                            </a>
+                        </div>
+                        <?php endforeach; ?>
+                    </section>
+
+                </aside>
+                <!-- /.sidebar -->
+                <?php endif; ?>
             </div>
         </div>
     </div>
-    <?php include_once 'blocks/footer.php'; ?>
+    <!-- .footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__info">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="footer__recent-posts">
+                            <h4>Recent posts</h4>
+                            <?php foreach ($recentPosts as $val): ?>
+                            <div class="footer__recent-post__info">
+                                <a class="footer__recent-post__title"
+                                    href="/post/<?=$val['id']?>"><?=$val['title']?></a>
+                                <div class="footer__recent-post__date"><?=date("F j, Y",strtotime($val['date']));?>
+                                </div>
+                            </div>
+                            <? endforeach; ?>
+                        </div>
+                    </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                    <div class="col-md-3">
+                        <div class="footer__nav">
+                            <h4>Pages</h4>
+
+                            <a class="footer__nav-link" href="/">Home</a>
+                            <a class="footer__nav-link" href="/categories">Categories</a>
+                            <a class="footer__nav-link" href="#">Store</a>
+                            <a class="footer__nav-link" href="/contact">Contacts</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="footer__categories">
+                            <h4>Categories</h4>
+
+                            <div class="footer__categories-content">
+                                <?php foreach ($categories as $category): ?>
+                                <a class="footer__categories-item rounded-pill"
+                                    href="/category/<?=$category['id_category']?>"><?=$category['name']?></a>
+                                <? endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="footer__text">
+                            <h4>Text widget</h4>
+                            <p>We’re both adults. I can’t pretend I don’t know that person is you. I want there to be no
+                                confusion. I
+                                know I owe you my life. And more than that, I respect the strategy. No speeches. Short
+                                speech.
+                                You lost
+                                your partner today. </p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.footer__info -->
+
+            <div class="copyright">
+                <p class="copyright__text">Designed by <span>Tonjoostudio</span></p>
+            </div>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <!-- .footer -->
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">

@@ -27,32 +27,32 @@
                 </a>
             </div>
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a href="#" class="nav-link">
+                <li class="nav-item <?php if ($this->route['action'] == 'dashboard') {echo 'active';}?>">
+                    <a href="/admin/dashboard" class="nav-link">
                         <i class="fas fa-th-large"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item <?php if ($this->route['action'] == 'users') {echo 'active';}?>">
+                    <a href="/admin/users/1" class="nav-link">
                         <i class="fas fa-users"></i>
                         <span>Users</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item <?php if ($this->route['action'] == 'posts') {echo 'active';}?>">
+                    <a href="/admin/posts/1" class="nav-link">
                         <i class="fas fa-file-alt"></i>
                         <span>Posts</span>
                     </a>
                 </li>
-                <li class="nav-item mb-auto">
-                    <a href="#" class="nav-link">
+                <li class="nav-item <?php if ($this->route['action'] == 'categories') {echo 'active';}?> mb-auto">
+                    <a href="/admin/categories" class="nav-link">
                         <i class="fas fa-list-ul"></i>
                         <span>Categories</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" id="exit_btn">
+                    <a href="/admin/logout" class="nav-link" id="exit_btn">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Exit</span>
                     </a>
@@ -72,21 +72,21 @@
                             <i class="fas fa-user-shield"></i> Admin Mino
                         </button>
                         <div class="dropdown-menu text-justify" aria-labelledby="dropdownMenuMenu">
-                            <a href="/post/add" class="dropdown-item">Add New Post</a>
-                            <a href="#" class="dropdown-item">Logout</a>
+                            <a href="/admin/add" class="dropdown-item">Add New Post</a>
+                            <a href="/admin/logout" class="dropdown-item">Logout</a>
                         </div>
                     </div>
 
                 </div>
             </header>
 
+            <?php endif; ?>
+
             <div class="container-fluid admin__content">
                 <?php echo $content; ?>
             </div>
 
-
         </div>
-        <?php endif; ?>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
@@ -98,7 +98,7 @@
         </script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js">
         </script>
-        <script src="/public/scripts/main.min.js"></script>
+        <script src="/public/scripts/main.js"></script>
 
 </body>
 

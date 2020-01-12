@@ -3,7 +3,6 @@
 return [
     'all' => [
         'login',
-        'logout',
     ],
     'authorize' => [
         //
@@ -12,7 +11,17 @@ return [
         //
     ],
     'admin' => [
+        'logout',
         'dashboard',
+        'users',
+        'posts',
+        'categories',
+        'post',
+        'add',
+        'edit',
+        'delete',
+        'deletecategory',
+        'deleteuser'
     ],
 ];
 

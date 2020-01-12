@@ -2,7 +2,7 @@
 
     <h1 class="text-center mb-3">Create post</h1>
 
-    <form method="POST" id="post_info" enctype="multipart/form-data">
+    <form action="/admin/add" method="post" class="submitForm" enctype="multipart/form-data">
         <div class="form-group">
             <input type="text" class="form-control" id="post_title" name="post_title" placeholder="Post Title..." />
         </div>
@@ -17,7 +17,9 @@
         <div class="form-group">
             <select class="browser-default custom-select" name="category_name">
                 <option selected disabled>Select Category</option>
-                <option value="Traveling">Traveling</option>
+                <?php foreach ($categories as $category): ?>
+                <option value="<?=$category['name']?>"><?=$category['name']?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 
@@ -46,12 +48,12 @@
             <a href="#" data-command='superscript'><i class='fa fa-superscript'></i></a>
         </div>
         <div id='editor' contenteditable=true data-text="Enter text here..."></div>
-        <textarea name="post_text" id="post_text" required="required" class="d-none"></textarea>
+        <textarea name="post_text" id="post_text" class="d-none"></textarea>
 
-        <div class="statusMsg"></div>
+        <div class="statusMsg mb-3"></div>
 
         <div class="form-group text-center">
-            <input type="submit" class="btn btn-default submitBtn" id="create_post" value="Create">
+            <input type="submit" class="btn btn-default submitBtn" value="Create">
         </div>
 
     </form>

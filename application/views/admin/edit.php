@@ -2,9 +2,10 @@
 
     <h1 class="text-center mb-3">Update post</h1>
 
-    <form method="POST" id="post_info1" enctype="multipart/form-data">
+    <form action="/admin/edit/<?=$data['id'];?>" method="post" class="submitForm" enctype="multipart/form-data">
         <div class="form-group">
-            <input type="text" class="form-control" id="post_title" name="post_title" value="Post title" />
+            <input type="text" class="form-control" id="post_title" name="post_title"
+                value="<?php echo htmlspecialchars($data['title'], ENT_QUOTES) ?>" />
         </div>
 
         <div class="form-group">
@@ -12,14 +13,17 @@
                 <input type="file" class="custom-file-input" id="post_photo" name="post_photo">
                 <label class="custom-file-label" for="customFile">Post photo...</label>
             </div>
-            <img src="/public/images/posts/photographer.jpg" alt="thumbnail" class="img-fluid img-thumbnail mb-3"
+            <img src="/public/images/posts/<?=$data['photo']?>" alt="thumbnail" class="img-fluid img-thumbnail mb-3"
                 style="width: 400px">
         </div>
 
         <div class="form-group">
             <select class="browser-default custom-select" name="category_name">
                 <option disabled>Select Category</option>
-                <option value="Traveling>">Traveling</option>
+                <?php foreach ($categories as $category): ?>
+                <option <?php if ($category["id_category"] == $data["id_category"]) {echo 'selected';}?>
+                    value="<?=$category['name']?>"><?=$category['name']?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 
@@ -48,12 +52,14 @@
         </div>
 
         <div id='editor' contenteditable=true data-text="Enter text here...">
-            Post Text
+            <?=$data['text']?>
         </div>
-        <textarea name="post_text" id="post_text" required="required" class="d-none"></textarea>
+        <textarea name="post_text" id="post_text" class="d-none"></textarea>
+
+        <div class="statusMsg mb-3"></div>
 
         <div class="form-group text-center">
-            <input type="submit" class="btn btn-default updateBtn" id="update_post" value="Update">
+            <input type="submit" class="btn btn-default submitBtn" value="Update">
         </div>
 
     </form>
