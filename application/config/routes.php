@@ -13,56 +13,62 @@ return [
         'action' => 'index',
     ],
 
-    'login' => [
-        'controller' => 'main',
+    //AuthorizationController
+    'authorization/login' => [
+        'controller' => 'authorization',
         'action' => 'login',
     ],
 
-    'register' => [
-        'controller' => 'main',
+    'authorization/register' => [
+        'controller' => 'authorization',
         'action' => 'register',
     ],
 
-    'logout' => [
-        'controller' => 'main',
+    'authorization/logout' => [
+        'controller' => 'authorization',
         'action' => 'logout',
     ],
 
-    'profile/{id:\d+}' => [
-        'controller' => 'main',
+    //UserController
+    'user/profile/{id:\d+}' => [
+        'controller' => 'user',
         'action' => 'profile',
     ],
-    
+
+    //CateoriesController
     'categories' => [
-        'controller' => 'main',
+        'controller' => 'categories',
         'action' => 'categories',
     ],
     'category/{id:\d+}' => [
-        'controller' => 'main',
+        'controller' => 'categories',
         'action' => 'category',
     ],
 
-    'contact' => [
-        'controller' => 'main',
-        'action' => 'contact',
-    ],
+    //PostController
     'post/{id:\d+}' => [
-        'controller' => 'main',
+        'controller' => 'post',
         'action' => 'post',
     ],
-    'add' => [
-        'controller' => 'main',
+    'post/add' => [
+        'controller' => 'post',
         'action' => 'add',
     ],
-    'edit/{id:\d+}' => [
-        'controller' => 'main',
+    'post/edit/{id:\d+}' => [
+        'controller' => 'post',
         'action' => 'edit',
     ],
-    'delete/{id:\d+}' => [
-        'controller' => 'main',
+    'post/delete/{id:\d+}' => [
+        'controller' => 'post',
         'action' => 'delete',
     ],
-    
+
+    //ContactController
+    'contact' => [
+        'controller' => 'contact',
+        'action' => 'contact',
+    ],
+
 
     //AdminController
     'admin' => [
@@ -117,7 +123,7 @@ return [
         'controller' => 'admin',
         'action' => 'delete',
     ],
-    
+
 ];
 
 ?>

@@ -21,12 +21,12 @@
 
                 <div class="post__info">
                     <span class="post__date"><?=date("F j, Y",strtotime($val['date']));?></span>
-                    <a class="post__author" href="/profile/<?=$val['id_user']?>">
+                    <a class="post__author" href="/user/profile/<?=$val['id_user']?>">
                         <?=$val['firstname'] . ' ' . $val['lastname'];?>
                     </a>
                     <span class="post__comments-quantity">
                         <?php
-                            if ($val['comments_count'] == 0) 
+                            if ($val['comments_count'] == 0)
                                 echo 'No comments';
                             else
                                 echo $val['comments_count']. ' comments';
@@ -40,13 +40,13 @@
                 </div>
 
                 <p class="post__text">
-                    <?php 
+                    <?php
                         $text = $val['text'];
                         $text = strip_tags($text);
                         $text = substr($text, 0, 350);
                         $text = rtrim($text, "!,.-");
                         $text = substr($text, 0, strrpos($text, ' '));
-                        echo $text."… "; 
+                        echo $text."… ";
                     ?>
                 </p>
 

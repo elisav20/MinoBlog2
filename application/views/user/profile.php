@@ -49,7 +49,7 @@
                         <?php
                             if ($post["comments_count"] == 0)
                                 echo 'No comments';
-                            else 
+                            else
                                 echo $post["comments_count"] . ' comments'
                         ?>
                     </span>
@@ -59,13 +59,13 @@
                 </div>
 
                 <p class="post__text">
-                    <?php 
+                    <?php
                         $text = $post["text"];
                         $text = strip_tags($text);
                         $text = substr($text, 0, 350);
                         $text = rtrim($text, "!,.-");
                         $text = substr($text, 0, strrpos($text, ' '));
-                        echo $text."… "; 
+                        echo $text."… ";
                     ?>
                 </p>
 
@@ -77,8 +77,8 @@
         <!-- /.row -->
     </div>
     <!-- /.post -->
-    <?php 
-        endforeach; 
+    <?php
+        endforeach;
         endif;
     ?>
 

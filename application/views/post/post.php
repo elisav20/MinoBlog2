@@ -24,21 +24,20 @@
                     class="post__author post__author--single"><?=$data['firstname'] . ' ' . $data['lastname'];?></span>
                 <span class="post__comments-quantity">
                     <?php
-                            if ($data['comments_count'] == 0) 
+                            if ($data['comments_count'] == 0)
                                 echo 'No comments';
                             else
                                 echo $data['comments_count']. ' comments';
                         ?>
                 </span>
 
-                <?php 
-                    if($_COOKIE['username'] && $data["id_user"] == $id_user): 
+                <?php
+                    if($_COOKIE['username'] && $data["id_user"] == $id_user):
                 ?>
 
                 <span class="post__modify">
-                    <a class="delete_post" href="/delete/<?=$data['id']?>" title="Delete post"
-                        onclick="return confirm('Do you want to delete?')"><i class="far fa-trash-alt delete"></i></a>
-                    <a id="edit_post" href="/edit/<?=$data['id']?>" title="Edit post"><i
+                    <a class="delete_post" href="#" title="Delete post" data-toggle="modal" data-target="#basicExampleModal"><i class="far fa-trash-alt delete"></i></a>
+                    <a id="edit_post" href="/post/edit/<?=$data['id']?>" title="Edit post"><i
                             class="far fa-edit edit"></i></a>
                 </span>
 
@@ -102,9 +101,7 @@
                     <textarea class="form-control md-textarea" id="comment" name="comment" rows="4"></textarea>
                 </div>
 
-                <div class="statusMsg mb-3"></div>
-
-                <div class="text-center mt-4">
+                <div class="text-center mt-4" id="js-add-post">
                     <input class="btn btn-default submitBtn" type="submit" value="Post">
                 </div>
 
@@ -112,8 +109,35 @@
 
         </div>
 
+        <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete the post: <?=$data["title"]?>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" id="delete_post">Delete Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
     <!-- /.comments -->
 
 </section>
 <!-- /.posts -->
+
+<script>
+    $("#delete_post").click(function() {
+	    window.location.href = "/post/delete/<?=$data["id"]?>";
+    });
+</script>

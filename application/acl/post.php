@@ -14,9 +14,9 @@ return [
         'logout',
     ],
     'authorize' => [
-        'post/add',
-        'post/edit',
-        'post/delete',
+        'add',
+        'edit',
+        'delete',
     ],
     'guest' => [
         //
