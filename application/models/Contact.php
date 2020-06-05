@@ -4,32 +4,9 @@ namespace application\models;
 
 use application\core\Model;
 
-class Main extends Model {
+class Contact extends Model {
 
     public $error;
-
-    public function postsList($route) {
-        $max = 5;
-        $params = [
-            'max' => $max,
-            'start' => (($route['page'] ?? 1) - 1) * $max,
-        ];
-        return $this->db->row('SELECT posts.*,
-                                        users.firstname,
-                                        users.lastname,
-                                        categories.id_category as category,
-                                        categories.name as category_name,
-                                        COUNT(comments.id_post) as comments_count
-                                FROM posts LEFT JOIN users ON posts.id_user = users.id
-                                            LEFT JOIN categories ON posts.id_category = categories.id_category
-                                            LEFT JOIN comments ON posts.id = comments.id_post
-                                GROUP BY posts.id
-                                ORDER BY id DESC LIMIT :start, :max', $params);
-    }
-
-    public function postsCount() {
-        return $this->db->column('SELECT COUNT(id) FROM posts');
-    }
 
     public function recentPosts() {
         $params = [
@@ -70,22 +47,6 @@ class Main extends Model {
         }
         return true;
     }
-
-    // public function searchPost() {
-    //     function search($text){
-
-    //         $text = htmlspecialchars($text);
-
-    //         $get_title = $this->$db->prepare("SELECT id, title FROM posts WHERE title LIKE concat('%', :title, '%')");
-
-    //         $get_title -> execute(array('title' => $text));
-
-    //             while($post = $get_title->fetch(PDO::FETCH_ASSOC)){
-    //                 echo '<a href="/post/' .$post['id'] . '">'.$post['title'].'</a>';
-    //             }
-    //     }
-    //     search($_GET['txt']);
-    // }
 }
 
 ?>

@@ -53,8 +53,6 @@
                         </div>
                     </div>
 
-                    <div class="statusMsg mb-3"></div>
-
                     <div class="text-center mt-4">
                         <button class="btn btn-default btn-rounded btn-md submitBtn" type="submit">SEND</button>
                     </div>

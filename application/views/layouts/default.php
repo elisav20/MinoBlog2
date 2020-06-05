@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Dosis|Candal' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="/public/images/icon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,700&display=swap"
@@ -15,16 +16,15 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Open+Sans:400,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/public/styles/style.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Open+Sans:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/styles/style.css">
     <title><?=$title;?></title>
 </head>
 
 <body>
     <!-- header -->
-    <div class="header">
-        <div class="container">
+    <div class="header" id="js-fixed-header">
+        <div class="container" id="js-scroll-nav-intro">
             <div class="header__logo">
                 <!-- Navbar brand -->
                 <a class="navbar-brand" href="/">
@@ -35,7 +35,7 @@
         <!-- /.container -->
 
         <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light" id="js-show-nav">
             <div class="container">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -84,15 +84,15 @@
                         aria-labelledby="navbarDropdownMenuLink-4">
 
                         <?php if (!isset($_COOKIE['username'])): ?>
-                        <a class="dropdown-item" href="/login">Login</a>
-                        <a class="dropdown-item" href="/register">Register</a>
+                        <a class="dropdown-item" href="/authorization/login">Login</a>
+                        <a class="dropdown-item" href="/authorization/register">Register</a>
                         <?php endif; ?>
 
                         <?php if (isset($_COOKIE['username'])): ?>
-                        <a class="dropdown-item" href="/add">Add new post</a>
-                        <a class="dropdown-item" href="/profile/<?=$id_user?>">My posts</a>
+                        <a class="dropdown-item" href="/post/add">Add new post</a>
+                        <a class="dropdown-item" href="/user/profile/<?=$id_user?>">My posts</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" id="exit_btn" href="/logout">Log out</a>
+                        <a class="dropdown-item" id="exit_btn" href="/authorization/logout">Log out</a>
                         <?php endif; ?>
 
                     </div>
@@ -105,20 +105,19 @@
     </div>
     <!-- /.header -->
 
-    <?php 
+    <?php
         if ($title == 'Home'):
     ?>
 
     <section class="intro">
         <div class="container-fluid">
             <div class="intro__content">
-                <h1 class="intro__title">Visual Speak Louder</h1>
+                <h1 class="intro__title">WELCOME ON MY BLOG</h1>
                 <p class="intro__text">This is an example of a WordPress post, you could edit this to put information
                     about
                     yourself or your site so readers know where you are coming from. You can create as many posts as you
                     like in
                     order to share with your readers what is on your mind.</p>
-                <a class="btn btn--outline" href="#">Read More</a>
             </div>
         </div>
     </section>
@@ -126,13 +125,14 @@
     <?php endif; ?>
 
     <div class="content">
+        <div id="errors"></div>
         <div class="container">
             <div class="row">
                 <?php echo $content; ?>
 
                 <?php
                     $no_sidebar = ['contact', 'add', 'edit'];
-                    if (!in_array($this->route['action'], $no_sidebar)): 
+                    if (!in_array($this->route['action'], $no_sidebar)):
                 ?>
                 <!-- .sidebar -->
                 <aside class="col-md-3 sidebar mb-5">
@@ -236,8 +236,6 @@
     </footer>
     <!-- .footer -->
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-    </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
     </script>
     <script type="text/javascript"

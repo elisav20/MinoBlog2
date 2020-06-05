@@ -1,5 +1,5 @@
 <div class="col-9 mt-5">
-    <form action="/login" method="post">
+    <form action="/authorization/login" method="post">
 
         <div class="md-form mb-5">
             <i class="fas fa-user prefix grey-text"></i>
@@ -14,7 +14,6 @@
                 password</label>
         </div>
 
-        <div class="statusMsg mb-3"></div>
         <div class="d-flex justify-content-center mb-3">
             <input type="submit" class="btn btn-default submitBtn" value="LOGIN">
         </div>

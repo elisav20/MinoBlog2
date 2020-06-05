@@ -1,5 +1,5 @@
 <div class="col-9 mt-5">
-    <form action="/register" method="post" class="submitForm mb-5" id="form">
+    <form action="/authorization/register" method="post" class="submitForm mb-5" id="form">
 
         <div class="md-form mb-5">
             <i class="fas fa-signature prefix grey-text"></i>
@@ -30,8 +30,6 @@
             <input type="password" id="signup-pass" name="signup-pass" class="form-control">
             <label for="signup-pass">Password</label>
         </div>
-
-        <div class="statusMsg mb-3"></div>
 
         <div class="d-flex justify-content-center mb-3">
             <input type="submit" class="btn btn-default submitBtn" value="REGISTER">

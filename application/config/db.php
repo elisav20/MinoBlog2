@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 return [
-    'host' => 'localhost',
+    'host' => '192.168.1.138',
     'dbname' => 'minoblog2',
     'user' => 'root',
     'password' => '',
