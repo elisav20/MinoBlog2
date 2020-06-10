@@ -159,8 +159,8 @@ function addComment() {
     let date = new Date().toLocaleDateString();
     let time = new Date().toLocaleTimeString().slice(0,-3);
     let quantity = $(".comments-quantity");
-    $(".comment__content")[0].insertAdjacentHTML("beforeBegin",
-        `<div class="comment__content">
+	$(".comment__content")[0].insertAdjacentHTML("beforeBegin",`
+		<div class="comment__content">
             <div class="comment__info">
                 <span class="comment__icon">
                     <i class="fas fa-user"></i>
