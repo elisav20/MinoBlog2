@@ -1,5 +1,5 @@
 <div class="col-9 mt-5">
-    <form action="/authorization/login" method="post">
+    <form id="form" action="/authorization/login" method="post">
 
         <div class="md-form mb-5">
             <i class="fas fa-user prefix grey-text"></i>

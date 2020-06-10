@@ -1,7 +1,7 @@
 let idToast = 0;
 
 $(document).ready(function () {
-	$('form').submit(function (event) {
+	$('#form').submit(function (event) {
 		var json;
 		event.preventDefault();
 		$.ajax({
@@ -151,4 +151,64 @@ $(function () {
 			nav.removeClass("header__fixed");
 		}
 	}
+});
+
+function addComment() {
+    let author = $('#username').val();
+    let comment = $('#comment').val();
+    let date = new Date().toLocaleDateString();
+    let time = new Date().toLocaleTimeString().slice(0,-3);
+    let quantity = $(".comments-quantity");
+    $(".comment__content")[0].insertAdjacentHTML("beforeBegin",
+        `<div class="comment__content">
+            <div class="comment__info">
+                <span class="comment__icon">
+                    <i class="fas fa-user"></i>
+                </span>
+                <span class="comment__username">${author}</span>
+                <span class="comment__dot">
+                    <i class="fas fa-circle"></i>
+                </span>
+                <span class="comment__date">${date} ${time}</span>
+            </div>
+
+            <p class="comment__text">${comment}</p>
+        </div>`
+    );
+    for (let i = 0; i < quantity.length; i++) {
+        quantity[i].innerHTML = parseInt(quantity[i].innerHTML) + 1;
+    }
+}
+
+$('#addComment').submit(function(event) {
+    let json;
+    event.preventDefault();
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function() {
+            $(".submitBtn").attr("disabled", "disabled");
+        },
+        success: function(result) {
+            json = jQuery.parseJSON(result);
+            if (json.url) {
+                window.location.href = '/' + json.url;
+            } else {
+                if (json.status == 1) {
+                    //message(++idToast, 'Success', json.message);
+                    addComment();
+                    $(".submitBtn").removeAttr("disabled");
+                    $(".submitForm")[0].reset();
+                    $("#editor").empty();
+                } else if (json.status == 0) {
+                    message(++idToast, 'Error', json.message);
+                    $(".submitBtn").removeAttr("disabled");
+                }
+            }
+        },
+    });
 });

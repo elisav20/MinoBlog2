@@ -2,7 +2,7 @@
 
     <h1 class="text-center mb-3">Update post</h1>
 
-    <form action="/post/edit/<?=$data['id'];?>" method="post" class="submitForm" enctype="multipart/form-data">
+    <form id="form" action="/post/edit/<?=$data['id'];?>" method="post" class="submitForm" enctype="multipart/form-data">
         <div class="form-group">
             <input type="text" class="form-control" id="post_title" name="post_title"
                 value="<?php echo htmlspecialchars($data['title'], ENT_QUOTES) ?>" />

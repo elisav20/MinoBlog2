@@ -146,7 +146,7 @@ class Post extends Model {
         $params = [
             'id_post' => $id_post,
         ];
-        return $this->db->row('SELECT * FROM comments WHERE id_post = :id_post', $params);
+        return $this->db->row('SELECT * FROM comments WHERE id_post = :id_post ORDER BY date DESC', $params);
     }
 
     public function commentValidate ($post) {

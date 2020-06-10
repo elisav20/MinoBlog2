@@ -2,7 +2,7 @@
 
     <h1 class="text-center mb-3">Create post</h1>
 
-    <form action="/post/add" method="post" class="submitForm" enctype="multipart/form-data">
+    <form id="form" action="/post/add" method="post" class="submitForm" enctype="multipart/form-data">
         <div class="form-group">
             <input type="text" class="form-control" id="post_title" name="post_title" placeholder="Post Title..." />
         </div>
